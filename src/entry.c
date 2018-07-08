@@ -86,8 +86,9 @@ int __entry_menu(int argc, char **argv) {
 			if (vpad.btns_h & VPAD_BUTTON_A) {
 				OSScreenPutFontEx(1, 0, 1, "Well it worked buton A.");
 			}
+		   if 
 		}
-	
+
 
 	//Quickly clear out the OSScreen framebuffer.
 	//We don't need to do this, but it's good practice.
