@@ -1,0 +1,95 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+OSScreenFlipBuffersEx
+                    0x4               entry.o
+OSScreenInit        0x4               entry.o
+OSDynLoad_Acquire   0x4               entry.o
+VPADInit            0x4               entry.o
+OSScreenPutFontEx   0x4               entry.o
+OSGetTime           0x4               entry.o
+OSScreenClearBufferEx
+                    0x4               entry.o
+VPADRead            0x4               entry.o
+OSScreenSetBufferEx
+                    0x4               entry.o
+DCFlushRange        0x4               entry.o
+OSScreenEnableEx    0x4               entry.o
+OSDynLoad_FindExport
+                    0x4               entry.o
+OSScreenGetBufferSizeEx
+                    0x4               entry.o
+
+Discarded input sections
+
+ .text          0x0000000000000000        0x0 entry.o
+ .data          0x0000000000000000        0x0 entry.o
+ .bss           0x0000000000000000        0x0 entry.o
+ .comment       0x0000000000000000       0x23 entry.o
+ .eh_frame      0x0000000000000000       0x6c entry.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD entry.o
+LOAD /opt/devkitpro/devkitPPC/lib/gcc/powerpc-eabi/8.1.0/libgcc.a
+START GROUP
+LOAD /opt/devkitpro/devkitPPC/lib/gcc/powerpc-eabi/8.1.0/../../../../powerpc-eabi/lib/libsysbase.a
+LOAD /opt/devkitpro/devkitPPC/lib/gcc/powerpc-eabi/8.1.0/../../../../powerpc-eabi/lib/libc.a
+END GROUP
+LOAD /opt/devkitpro/devkitPPC/lib/gcc/powerpc-eabi/8.1.0/libgcc.a
+                0x0000000000802000                . = 0x802000
+
+.text           0x0000000000802000      0x510
+ *(.text*)
+ .text.__entry_menu
+                0x0000000000802000      0x510 entry.o
+                0x0000000000802000                __entry_menu
+
+.rodata         0x0000000000802510      0x184
+ *(.rodata*)
+ .rodata.__entry_menu.str1.4
+                0x0000000000802510      0x184 entry.o
+                                        0x181 (size before relaxing)
+
+.data           0x0000000000802694        0x0
+ *(.data*)
+                0x0000000000802694                __sdata_start = .
+ *(.sdata*)
+ .sdata         0x0000000000802694        0x0 entry.o
+ .sdata2        0x0000000000802694        0x0 entry.o
+                0x0000000000802694                __sdata_end = .
+                0x0000000000802694                __sdata2_start = .
+ *(.sdata2*)
+                0x0000000000802694                __sdata2_end = .
+
+.bss            0x0000000000802694       0x34
+                0x0000000000802694                __bss_start = .
+ *(.bss*)
+ *(.sbss*)
+ .sbss          0x0000000000802694       0x34 entry.o
+                0x0000000000802694                OSScreenFlipBuffersEx
+                0x0000000000802698                OSScreenInit
+                0x000000000080269c                OSDynLoad_Acquire
+                0x00000000008026a0                VPADInit
+                0x00000000008026a4                OSScreenPutFontEx
+                0x00000000008026a8                OSGetTime
+                0x00000000008026ac                OSScreenClearBufferEx
+                0x00000000008026b0                VPADRead
+                0x00000000008026b4                OSScreenSetBufferEx
+                0x00000000008026b8                DCFlushRange
+                0x00000000008026bc                OSScreenEnableEx
+                0x00000000008026c0                OSDynLoad_FindExport
+                0x00000000008026c4                OSScreenGetBufferSizeEx
+ *(COMMON)
+                0x00000000008026c8                __bss_end = .
+                0x00000000008026c8                __CODE_END = .
+
+/DISCARD/
+ *(*)
+OUTPUT(../hello_world_dbg.elf elf32-powerpc)
